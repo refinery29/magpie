@@ -39,7 +39,7 @@ class Magpie(object):
 
     def train(self, train_dir, vocabulary, test_dir=None, callbacks=None,
               nn_model=NN_ARCHITECTURE, batch_size=BATCH_SIZE, test_ratio=0.0,
-              epochs=EPOCHS, verbose=1):
+              epochs=EPOCHS, verbose=1, class_weight=None):
         """
         Train the model on given data
         :param train_dir: directory with data files. Text files should end with
@@ -105,11 +105,12 @@ class Magpie(object):
             validation_split=test_ratio,
             callbacks=callbacks or [],
             verbose=verbose,
+            class_weight=class_weight
         )
 
     def batch_train(self, train_dir, vocabulary, test_dir=None, callbacks=None,
                     nn_model=NN_ARCHITECTURE, batch_size=BATCH_SIZE,
-                    epochs=EPOCHS, verbose=1):
+                    epochs=EPOCHS, verbose=1, class_weight=None):
         """
         Train the model on given data
         :param train_dir: directory with data files. Text files should end with
@@ -174,6 +175,7 @@ class Magpie(object):
             validation_data=test_data,
             callbacks=callbacks or [],
             verbose=verbose,
+            class_weight=class_weight
         )
 
     def predict_from_file(self, filepath):
